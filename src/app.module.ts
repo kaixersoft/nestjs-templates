@@ -7,7 +7,7 @@ import { TypeOrmConfig } from './core/config/typeorm.config';
   imports: [
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfig }),
     // Register your feature module here
-    // UiModule,
+    // ...
   ],
   controllers: [AppController],
 })

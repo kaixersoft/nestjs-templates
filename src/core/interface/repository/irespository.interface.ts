@@ -7,7 +7,7 @@ export abstract class IRepository<T, CreateDto, UpdateDto> {
 
   abstract findById(id: string): Promise<T>;
 
-  abstract findAll(params?: any): Promise<T[] | []>;
+  abstract findAll(params?: any): Promise<[T[], totalRows: number] | []>;
 
   abstract delete(id: string): Promise<UpdateResult>;
 }
