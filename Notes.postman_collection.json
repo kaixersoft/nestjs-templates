@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "06226233-8565-44a3-921e-d3ff0273b16f",
+		"name": "Notes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33073300"
+	},
+	"item": [
+		{
+			"name": "Create New Personal Note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"personal\",\n    \"description\": \"I love nestjs\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/note/personal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"personal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Personal Note",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/note/personal/:personalId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"personal",
+						":personalId"
+					],
+					"variable": [
+						{
+							"key": "personalId",
+							"value": "c1f27f00-d606-4a26-a8c5-b98be2a570b3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Personal Note",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"personal\",\n    \"description\": \"Awesome Rivermaya\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/note/personal/:personalId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"personal",
+						":personalId"
+					],
+					"variable": [
+						{
+							"key": "personalId",
+							"value": "c1f27f00-d606-4a26-a8c5-b98be2a570b3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all Personal Notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/note/personal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"personal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Personal Note",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/note/personal/:personalId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"personal",
+						":personalId"
+					],
+					"variable": [
+						{
+							"key": "personalId",
+							"value": "c01269cc-6e3c-490a-a3a9-2a8daee8ac11"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

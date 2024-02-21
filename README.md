@@ -47,6 +47,12 @@ Copy .env.local to .env
 $ cp .env.local .env
 ```
 
+Run migration
+
+```bash
+$ npm run typeorm:migration:run
+```
+
 ## Running the app
 
 ```bash
@@ -92,3 +98,8 @@ How to revert previous migration
 ```bash
 $ npm run typeorm:migration:revert
 ```
+
+## References
+
+- Official NestJs Documentation can be found on https://docs.nestjs.com/
+- Download sample Notes postman collection [here](/Notes.postman_collection.json)
