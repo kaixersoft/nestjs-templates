@@ -1,0 +1,13 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: system-x
+    volumes:
+      - ./.docker/pg:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
