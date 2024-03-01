@@ -1,0 +1,34 @@
+version: '3'
+services:
+  # postgres:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_DB: system-x
+  #   volumes:
+  #     - ./.docker/pg:/var/lib/postgresql/data
+  #   ports:
+  #     - '5432:5432'
+
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./.docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  bullboard:
+    container_name: bullboard
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: release
+    env_file:
+      - ./.env
+    ports:
+      - '3100:3100'
+    depends_on:
+      - redis
