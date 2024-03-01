@@ -11,11 +11,13 @@ import { createBullBoard } from 'bull-board';
 import { BullMQAdapter } from 'bull-board/dist/queueAdapters/bullMQ';
 import { Queue } from 'bullmq';
 import { ConfigService } from '@nestjs/config';
+import { join } from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: join(__dirname + '../../.env'),
     }),
   ],
   controllers: [BullboardController],
@@ -29,7 +31,7 @@ export class BullboardModule implements NestModule {
   async configure(consumer: MiddlewareConsumer) {
     const connectionOpts = {
       host: this.configService.getOrThrow('REDIS_HOST'),
-      port: this.configService.getOrThrow('REDIS_PORT'),
+      port: parseInt(this.configService.getOrThrow('REDIS_PORT')),
     };
 
     this.logger.debug('REDIS CONNECTION', connectionOpts);
