@@ -13,8 +13,29 @@ third party API, it uses Job Queue to process actual external API call.
 
 - BullBoard module
   - this module provides GUI that provides information regarding how your Queue jobs was process.
+- RBAC module
+  - this module handles all your routes authentication, it makes all your routes protected
 - Sample module
   - this is a sample module for your reference, you may delete this module after creating your own module
+
+### Project Structure
+
+- `.docker` - used when mounting volumes for your local docker containers
+- `.vscode` - contains VSCode setting such as auto fix lint issues and auto format
+- `src` - this is the main source code folder of your nestjs project
+  - `common` - this folder contains all reusable module, class for any feature module
+  - `bullboard` - this is a feature module that handles your Queue user interface
+  - `sample` - this is a sample feature module that showcase how to structure your feature and also how to integrate Service Layer API
+  - `app.controller.ts` - this is the main nestjs app routes, only `/health` is supposed to be here for ECS container health checking, must be public route.
+  - `app.module.ts` - this is the main nestjs module, this is where you register your new feature module, which is automatically updated upon generating new module.
+  - `main.ts` - this is the main nestjs app entry file, it has all the configuration built-in already for all your use cases.
+- `test` - this folder is for all your unit tests
+- `.env` - this file needs to be manually created base on `.env.local`, contents needs to be updated, such as credentials
+- `.env.local` - this is the sample env file for your reference only
+- `.npmrc` - this is generated using the script `generate-npmrc.sh`, this file is needed for you to be able to install RBAC decorators from RND team.
+- `docker-compose.yaml` - this is a file for you to provision local instance of REDIS via docker
+- `Dockerfile` - this is a file use to generate your project docker image ready for container deployment
+- `package.json` - this file list your NPM package dependencies
 
 ## Pre-requisite
 
@@ -74,6 +95,15 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## How generate a feature module classes
+
+- Generate a feature module
+  `$> nest g module <feature_name>`
+- Generate a controller for your feature module
+  `$> nest g controller <feature_name>`
+- Generate a service for your feature module
+  `$> nest g service <feature_name>`
 
 ## How to pull RND's RBAC npm package
 

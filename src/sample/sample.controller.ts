@@ -16,16 +16,19 @@ import { ListProfilesDto } from './domain/dto/list-profile.dto';
 export class SampleController {
   constructor(private readonly sampleService: SampleService) {}
 
-  @Post()
-  @UseGuards(new Permission(['profile']))
-  async createNewProfile(@Body() data: CreateProfileDto) {
-    return await this.sampleService.createNewProfile(data);
-  }
-
+  /**
+   *  This route can return all response of any job id
+   */
   @Get('/jobs/:jobId/status')
   @UseGuards(new Permission(['profile']))
   async getJobStatus(@Param('jobId') jobId: string) {
     return await this.sampleService.getJobStatus(jobId);
+  }
+
+  @Post()
+  @UseGuards(new Permission(['profile']))
+  async createNewProfile(@Body() data: CreateProfileDto) {
+    return await this.sampleService.createNewProfile(data);
   }
 
   @Get('/users')

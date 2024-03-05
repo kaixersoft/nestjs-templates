@@ -19,16 +19,3 @@ services:
     volumes:
       - ./.docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
     command: redis-server /usr/local/etc/redis/redis.conf
-
-  # bullboard:
-  #   container_name: bullboard
-  #   build:
-  #     context: .
-  #     dockerfile: ./Dockerfile
-  #     target: release
-  #   env_file:
-  #     - ./.env
-  #   ports:
-  #     - '3100:3100'
-  #   depends_on:
-  #     - redis

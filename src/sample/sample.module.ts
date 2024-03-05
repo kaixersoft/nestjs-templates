@@ -10,14 +10,25 @@ import { RbacController } from './rbac/rbac.controller';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot(), // Mandatory
     JobQueueModule.registerQueue(
-      ['profile-queue'],
-      [HttpService, SampleServiceLayerApi, SampleQueueWorkerService],
-      new ConfigService(),
+      ['profile-queue'], // this will be your Feature Queue
+      [
+        HttpService, // Mandatory
+        SampleServiceLayerApi, // your Service API integration class
+        SampleQueueWorkerService, // your Queue Worker
+      ],
+      new ConfigService(), // Mandatory
     ),
   ],
-  controllers: [SampleController, RbacController],
-  providers: [SampleService],
+  controllers: [
+    // Register here all your feature routes
+    SampleController,
+    RbacController,
+  ],
+  providers: [
+    // Register here all your custom classes eg. Repository, Services
+    SampleService,
+  ],
 })
 export class SampleModule {}
