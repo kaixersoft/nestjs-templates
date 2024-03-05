@@ -30,8 +30,14 @@ export class AppController {
   }
 
   @Get('/permission')
-  @UseGuards(new Permission(['test-permission']))
+  @UseGuards(new Permission(['profile']))
   permissionCheck(): string {
+    return 'ok';
+  }
+
+  @Get('/no-permission')
+  @UseGuards(new Permission(['restricted-permission']))
+  permissionCheck2(): string {
     return 'ok';
   }
 }

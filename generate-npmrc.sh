@@ -1,0 +1,2 @@
+
+AWS_ACCESS_TOKEN=$(aws codeartifact get-authorization-token --domain rnd-ai-npm-domain --domain-owner 560348292202 --query authorizationToken --output text) && echo -e "@rnd-ai-npm-domain:registry=https://rnd-ai-npm-domain-560348292202.d.codeartifact.ap-southeast-1.amazonaws.com/npm/ai-npm-repository/\n//rnd-ai-npm-domain-560348292202.d.codeartifact.ap-southeast-1.amazonaws.com/npm/ai-npm-repository/:_authToken=${AWS_ACCESS_TOKEN}" > .npmrc
