@@ -47,6 +47,7 @@ export class ServiceLayerApi {
       );
     }
 
+    this.logger.debug('SERVICE API TOKEN', this.token);
     return this.token;
   }
 }

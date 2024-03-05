@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ServiceLayerApi } from 'src/common/services/service-layer-api';
+import { ListProfilesDto } from '../dto/list-profile.dto';
 
 @Injectable()
 export class SampleServiceLayerApi extends ServiceLayerApi {
@@ -42,7 +43,7 @@ export class SampleServiceLayerApi extends ServiceLayerApi {
     }
   }
 
-  async getAllUsers(data: any) {
+  async getAllUsers(data: ListProfilesDto) {
     const token = await this.getToken();
 
     const headers = {
@@ -50,9 +51,9 @@ export class SampleServiceLayerApi extends ServiceLayerApi {
       Authorization: `Bearer ${token}`,
     };
 
-    const url = `${this.PROFILE_BASE_URL}/v1/profile/query?page=1&limit=10&search=&sortBy=createdAt&sortType=desc`;
+    const url = `${this.PROFILE_BASE_URL}/v1/profile/query`;
     try {
-      const result = await this.httpService.get(url, {}, headers);
+      const result = await this.httpService.get(url, data, headers);
 
       return (result.data as any).result;
     } catch (e) {

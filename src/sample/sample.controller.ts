@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateProfileDto } from './domain/dto/create-profile.dto';
 import { SampleService } from './sample.service';
 import { Permission } from '@rnd-ai-npm-domain/identity-middleware';
+import { ListProfilesDto } from './domain/dto/list-profile.dto';
 
 @Controller('sample')
 export class SampleController {
@@ -21,8 +30,8 @@ export class SampleController {
 
   @Get('/users')
   @UseGuards(new Permission(['profile']))
-  async getAllUsers() {
-    return await this.sampleService.getAllUsers();
+  async getAllUsers(@Query() queryParams: ListProfilesDto) {
+    return await this.sampleService.getAllUsers(queryParams);
   }
 
   @Get(':profileId')

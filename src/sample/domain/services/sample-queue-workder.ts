@@ -37,8 +37,7 @@ export class SampleQueueWorkerService {
   async handleGetAllUsers(job: Job<any>) {
     const result = await this.serviceApi.getAllUsers(job.data);
     return {
-      status: 'completed',
-      result,
+      ...result,
     };
   }
 

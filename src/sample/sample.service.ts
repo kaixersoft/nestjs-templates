@@ -7,6 +7,7 @@ import { CreateProfileDto } from './domain/dto/create-profile.dto';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { v4 as uuidv4 } from 'uuid';
+import { ListProfilesDto } from './domain/dto/list-profile.dto';
 
 @Injectable()
 export class SampleService {
@@ -57,15 +58,11 @@ export class SampleService {
     };
   }
 
-  async getAllUsers() {
+  async getAllUsers(queryParams: ListProfilesDto) {
     const jobId = uuidv4();
-    const job = await this.profileQueue.add(
-      'get-all-users-job',
-      {},
-      {
-        jobId,
-      },
-    );
+    const job = await this.profileQueue.add('get-all-users-job', queryParams, {
+      jobId,
+    });
 
     return {
       job_id: job.id,
