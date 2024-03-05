@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { IAMConfigService } from '../services/iam-config.service';
+import { IAMConfigService } from './iam-config.service';
 
 @Module({
   providers: [IAMConfigService],
