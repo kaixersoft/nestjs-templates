@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpService } from 'src/common/utils/http-service.utils';
 import { SampleServiceLayerApi } from './domain/data/sample-service-api.service';
 import { SampleQueueWorkerService } from './domain/services/sample-queue-workder';
+import { RbacController } from './rbac/rbac.controller';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { SampleQueueWorkerService } from './domain/services/sample-queue-workder
       new ConfigService(),
     ),
   ],
-  controllers: [SampleController],
+  controllers: [SampleController, RbacController],
   providers: [SampleService],
 })
 export class SampleModule {}
