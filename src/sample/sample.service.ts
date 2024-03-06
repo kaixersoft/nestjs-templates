@@ -22,10 +22,12 @@ export class SampleService {
       jobId,
     });
 
-    return {
-      job_id: job.id,
-      status: 'processing',
-    };
+    return [
+      {
+        job_id: job.id,
+        status: 'processing',
+      },
+    ];
   }
 
   async getJobStatus(jobId: string) {
@@ -39,7 +41,7 @@ export class SampleService {
       throw new BadRequestException(job.failedReason);
     }
 
-    return job.returnvalue;
+    return job.returnvalue; // format is returned by the worker
   }
 
   async getUserProfile(profileId: string) {
@@ -52,10 +54,12 @@ export class SampleService {
       },
     );
 
-    return {
-      job_id: job.id,
-      status: 'processing',
-    };
+    return [
+      {
+        job_id: job.id,
+        status: 'processing',
+      },
+    ];
   }
 
   async getAllUsers(queryParams: ListProfilesDto) {
@@ -64,9 +68,11 @@ export class SampleService {
       jobId,
     });
 
-    return {
-      job_id: job.id,
-      status: 'processing',
-    };
+    return [
+      {
+        job_id: job.id,
+        status: 'processing',
+      },
+    ];
   }
 }

@@ -8,15 +8,9 @@ export class SampleServiceLayerApi extends ServiceLayerApi {
 
   async createNewProfile(data: any): Promise<void> {
     try {
-      const token = await this.getToken();
-
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
       const url = `${this.PROFILE_BASE_URL}/v1/profile`;
 
-      const result = await this.httpService.post(url, data, {}, headers);
+      const result = await this.apiCall('POST', url, data);
 
       return (result.data as any).result;
     } catch (e) {
@@ -27,15 +21,9 @@ export class SampleServiceLayerApi extends ServiceLayerApi {
 
   async getUserProfile(profileId: string): Promise<any> {
     try {
-      const token = await this.getToken();
-
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
       const url = `${this.PROFILE_BASE_URL}/v1/profile/${profileId}`;
 
-      const result = await this.httpService.get(url, {}, headers);
+      const result = await this.apiCall('GET', url);
 
       return (result.data as any).result;
     } catch (e) {
@@ -44,16 +32,10 @@ export class SampleServiceLayerApi extends ServiceLayerApi {
   }
 
   async getAllUsers(data: ListProfilesDto) {
-    const token = await this.getToken();
-
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    };
-
-    const url = `${this.PROFILE_BASE_URL}/v1/profile/query`;
     try {
-      const result = await this.httpService.get(url, data, headers);
+      const url = `${this.PROFILE_BASE_URL}/v1/profile/query`;
+
+      const result = await this.apiCall('GET', url, {}, data);
 
       return (result.data as any).result;
     } catch (e) {

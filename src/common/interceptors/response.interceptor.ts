@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
 export interface ResponseObject<T> {
   timestamp: Date;
   statusCode: number;
-  message: string;
-  data: T;
+  message: [string];
+  data: T | {};
 }
 @Injectable()
 export class ResponseInterceptor<T>
@@ -30,8 +30,8 @@ export class ResponseInterceptor<T>
       map((data) => ({
         timestamp: new Date(),
         statusCode,
-        message: 'Operation completed successfully',
-        data: data ?? [],
+        message: ['Operation completed successfully'],
+        data: data ?? {},
       })),
     );
   }

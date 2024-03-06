@@ -25,7 +25,7 @@ export class QueryExceptionFilter implements ExceptionFilter {
       errorCode: new Date().getTime(),
       timestamp: new Date(),
       statusCode: status,
-      message: errorMessage,
+      message: [errorMessage],
     };
     this.logger.error(exception.message, errorResponse, exception.stack);
     response.status(status).json(errorResponse);

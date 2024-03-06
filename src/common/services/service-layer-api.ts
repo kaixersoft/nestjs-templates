@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '../utils/http-service.utils';
+import { Method } from 'axios';
 
 interface ResponseData {
   result: {
@@ -49,5 +50,28 @@ export class ServiceLayerApi {
 
     this.logger.debug('SERVICE API TOKEN', this.token);
     return this.token;
+  }
+
+  async apiCall(
+    method: Method,
+    url: string,
+    data?: object,
+    params?: object,
+    headers?: object,
+  ) {
+    const token = await this.getToken();
+    if (!headers || Object.keys(headers).length === 0) {
+      headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+    } else {
+      headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        ...headers,
+      };
+    }
+    return await this.httpService.request(method, url, data, params, headers);
   }
 }
