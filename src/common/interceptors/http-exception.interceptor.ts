@@ -27,10 +27,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
 
       const errorResponse: any = {
-        errorCode: new Date().getTime(),
         timestamp: new Date(),
         statusCode: status,
-        message: errorMessage,
+        message: [errorMessage],
       };
       this.logger.error(exception.message, errorResponse, exception.stack);
       response.status(status).json(errorResponse);
@@ -41,7 +40,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         errorCode: new Date().getTime(),
         timestamp: new Date(),
         statusCode: status,
-        message: errorMessage,
+        message: [errorMessage],
       };
       this.logger.error(errorMessage, errorResponse, exception);
       response.status(status).json(errorResponse);

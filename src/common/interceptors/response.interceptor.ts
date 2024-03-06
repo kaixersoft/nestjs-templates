@@ -12,7 +12,7 @@ export interface ResponseObject<T> {
   timestamp: Date;
   statusCode: number;
   message: string;
-  result: T;
+  data: T;
 }
 @Injectable()
 export class ResponseInterceptor<T>
@@ -31,7 +31,7 @@ export class ResponseInterceptor<T>
         timestamp: new Date(),
         statusCode,
         message: 'Operation completed successfully',
-        result: data ?? {},
+        data: data ?? [],
       })),
     );
   }
