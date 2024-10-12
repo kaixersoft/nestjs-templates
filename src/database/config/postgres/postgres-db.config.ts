@@ -18,6 +18,13 @@ export default class TypeOrmConfig implements TypeOrmOptionsFactory {
       logging: true,
       synchronize: false,
       autoLoadEntities: true,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+        timezone: 'UTC',
+      },
     };
   }
 }

@@ -16,6 +16,13 @@ export const connectionSource = new DataSource({
   autoLoadEntities: true,
   entities: ['src/**/entities/*.ts'],
   migrations: ['src/**/migrations/*.ts'],
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+    timezone: 'UTC',
+  },
 } as DataSourceOptions);
 
 /** USAGE
